@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: {{ include "simple-nginx.fullname" . }}-service
+    namespace: {{ .Values.namespace }}
+    labels:
+        app: {{ include "simple-nginx.fullname" . }}
+spec:
+    type: NodePort
+    ports:
+        - name:  {{ .Values.service.nginx.name }}
+          protocol: {{ .Values.service.nginx.protocol }}
+          # Service 對外的 port
+          port: {{ .Values.service.nginx.port }}
+          # Service 到 Container 的 port
+          targetPort: {{ .Values.service.nginx.targetPort }}
+          nodePort: {{ .Values.service.nginx.nodePort }}
+    selector:
+        app: {{ include "simple-nginx.fullname" . }}

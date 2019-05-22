@@ -1,0 +1,29 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+#------ 描述 Deployment ---------
+metadata:
+    name: nginx-deployment
+    namespace: {{ .Values.namespace }}
+    labels:
+        app: {{ include "simple-nginx.fullname" . }}
+spec:
+#------ 描述 ReplicaSet ---------
+    selector:
+      matchLabels:
+            app: {{ include "simple-nginx.fullname" . }}
+    replicas: {{ .Values.apiInfo.replicaCount }} # tells deployment to run 2 pods matching the template
+    template:
+#------ 描述 Pod ----------------
+# create pods using pod definition in this template
+# unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
+# generated from the deployment name
+# 不像自已定義pod 的名字，這邊deployment 會自動generate pod name 出來
+        metadata:
+            labels:
+                app: {{ include "simple-nginx.fullname" . }}
+        spec:
+            containers:
+                - name: {{ .Values.apiInfo.nginx.name }}
+                  image: "{{ .Values.apiInfo.nginx.image.repository }}:{{ .Values.apiInfo.nginx.image.tag }}"
+                  ports:
+                      - containerPort: {{ .Values.apiInfo.nginx.port }}
