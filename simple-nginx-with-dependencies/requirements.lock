@@ -1,0 +1,6 @@
+dependencies:
+- name: simple-nginx
+  repository: http://localhost:8879
+  version: 0.1.0
+digest: sha256:414de3e2904c20c66f08757826ae592888f7b772b49d5b19c7bdd03b657a29b0
+generated: 2019-05-22T15:44:16.945556-07:00

@@ -1,0 +1,7 @@
+# use `helm dependency update` to update chart
+dependencies:
+  - name: simple-nginx
+    version: 0.1.0
+    repository: http://localhost:8879
+    tags:
+      - nginx
