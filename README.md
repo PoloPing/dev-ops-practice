@@ -1,4 +1,4 @@
-# dev-ops-pgratice
+# DEV-OPS-PRACTICE
 
 **STEP 1 - RUN CLUSTER**
 
