@@ -4,9 +4,9 @@
 
 brew install kubernetes-helm
 
-helm init --history-max 200
-
 kubectl create -f . -R
+
+helm init --history-max 200 --service-account tiller --upgrade
 
 
 **Command Line**
@@ -17,7 +17,7 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'      
 
-helm init --service-account tiller --upgrade
+helm init --history-max 200 --service-account tiller --upgrade
 
 **Reference**
 
